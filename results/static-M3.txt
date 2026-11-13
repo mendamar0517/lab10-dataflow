@@ -1,0 +1,8 @@
+# M3 mutant (int total = present + best; after loop, line 49) - static analysis
+# PMD 7.28.0 (79726f0e8f46c1a9954a3f9880f6d15c91bf6387, 2026-09-25T07:52:15Z) (npm pmd-bin 3.0.0)
+$ pmd check -d mn/edu/must/sqat/DataFlowTargets.java -R category/java/bestpractices.xml/UnusedLocalVariable,category/java/bestpractices.xml/UnusedAssignment -f text
+mn/edu/must/sqat/DataFlowTargets.java:49:	UnusedLocalVariable:	Avoid unused local variables such as 'total'.
+[INFO] Found 1 violation.
+
+$ javac -Xlint:all DataFlowTargets.java   (M3 mutant)
+javac exit code: 0 (no warnings)

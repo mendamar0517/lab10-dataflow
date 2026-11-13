@@ -80,4 +80,12 @@ class BonusTest {
     void runLongerThanFive_exactThreshold_gets8() {
         assertEquals(8, DataFlowTargets.bonus(new int[] {1, 1, 1, 1, 1, 1, 1}, 7));
     }
+
+    // ---------- Part C: kills mutant M2 (best = present) ----------
+
+    @Test
+    @DisplayName("K1 [1,1,0,1,1,1] thr=10 -> 0 | best is raised (line 43) in a LATER run, when present(5) != streak(3); kills M2")
+    void m2Kill_laterLongerRunAfterBreak_noStreakBonus() {
+        assertEquals(0, DataFlowTargets.bonus(new int[] {1, 1, 0, 1, 1, 1}, 10));
+    }
 }
