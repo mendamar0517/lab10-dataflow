@@ -49,6 +49,19 @@ OS name: "linux", version: "6.18.44-fc-v445", arch: "amd64", family: "unix"
 | P8 | `BonusTest.runLongerThanFive_exactThreshold_gets8` | [1,1,1,1,1,1,1], 7 → 8 |
 | K1 | `BonusTest.m2Kill_laterLongerRunAfterBreak_noStreakBonus` | [1,1,0,1,1,1], 10 → 0 (Хэсэг C) |
 
+## Тэнцэх шаардлагын шалгах хуудас
+
+| Шаардлага | Нотолгоо |
+|---|---|
+| `mvn verify` ногоон, JaCoCo тайлан, results/ бүрэн (UTF-8) | `results/mvn-verify-final.txt` — Tests run: 15, Failures: 0; `results/` доторх 11 текст файл |
+| gcd-ийн бүрэн DU хүснэгт + all-DU-pairs тест | Хэсэг A хүснэгт (13 хос, def-clear замтай); `GcdTest.java` |
+| bonus: CFG + DU хүснэгт (c/p-use, kill, тестийн ID, биелэшгүй хос) | `cfg-bonus.png`; Хэсэг B1–B3 (35 хос, 2 биелэшгүй, 6 kill-ээр тасарсан хослол) |
+| all-defs ба all-DU-pairs тусдаа commit, all-defs тестийн тоо үндэслэлтэй | commit `941a722` (all-defs, 2 тест) ба `0061f58` (all-DU-pairs, +8 тест); Хэсэг B4 |
+| `jacoco-final.csv`: BRANCH_MISSED = 0, LINE_MISSED = 1 | `results/jacoco-final.csv` — 0/16 branch missed, 1 line missed (7-р мөр) |
+| Fault seeding хүснэгт, M2 шалтгаан + унагах тест, M3 тайлбар | Хэсэг C; `results/mvn-test-M1.txt`, `mvn-test-M2.txt`, `mvn-test-M2-kill.txt`, `mvn-test-M3.txt`, `static-M3.txt` |
+| Эцсийн src/main нь starter-тэй ижил | `git diff 0f43402 HEAD -- src/main` хоосон |
+| target/ ба .docx репод ороогүй | `.gitignore`-д `target/`; `git ls-files`-д .docx байхгүй |
+
 ---
 
 ## Хэсэг A: gcd — бүрэн DU хүснэгт
